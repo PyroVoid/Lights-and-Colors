@@ -3,7 +3,7 @@ import time
 import cv2
 import numpy as np
 from numpy import dtype, ndarray
-
+from Coord import Coord
 
 
 
@@ -61,5 +61,10 @@ def algorithm(frame1, frame2):
                 cx = int(M["m10"] / M["m00"])
                 cy = int(M["m01"] / M["m00"])
                 coordinates.append((cx, cy))
+
+    converted_coordinates = []
+
+    for coord in coordinates:
+        converted_coordinates.append(Coord(coord[0], coord[1]))
 
     return coordinates

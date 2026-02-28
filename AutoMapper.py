@@ -2,13 +2,24 @@ from TreeSimulation import Tree
 import Controller
 from LightDiffAlgo import algorithm, take_photo
 import cv2
+import platform
+
+if platform.system() == "Windows":
+    cap = cv2.VideoCapture(1, cv2.CAP_DSHOW)
+else:
+    cap = cv2.VideoCapture(1)
+controller = Controller.Controller()
+
+def find_leds():
+    leds = set()
+    first = take_photo(cap)
+    controller.set_all((0, 0, 0))
+    second = take_photo(cap)
+
 
 def map():
-    cap = cv2.VideoCapture(1)
     coords = []
-    controller = Controller.Controller()
-    for i in range(Tree.LIGHTS):
-        controller.set_color(i, (0, 0, 0))
+    controller.set_all((0, 0, 0))
     frame1 = take_photo(cap)
     for i in range(Tree.LIGHTS):
         controller.set_color(i, (255, 255, 255))
@@ -21,3 +32,4 @@ def map():
 if __name__ == "__main__":
     coords = map()
     print(coords)
+    print(len(coords))
