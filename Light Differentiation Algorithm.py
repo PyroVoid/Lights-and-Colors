@@ -1,5 +1,5 @@
 from typing import Any
-
+import time
 import cv2
 import numpy as np
 from numpy import dtype, ndarray
@@ -17,9 +17,7 @@ def webcamPhoto(cap: cv2.VideoCapture)-> ndarray[tuple[Any, ...], dtype[Any]] | 
         return None
 
 
-def test():
-    cap = cv2.VideoCapture(0)
-
+def test(cap):
     # Check if the camera opened
     if not cap.isOpened():
         print("Camera failed to open.")
@@ -36,16 +34,22 @@ def test():
 
 
 def algorithm():
-    frame1 = test()
-    frame2 = test()
+    cap = cv2.VideoCapture(1)
+    frame1 = test(cap)
+    time.sleep(5)
+    frame2 = test(cap)
     difference = cv2.absdiff(frame1, frame2)
     gray = cv2.cvtColor(difference, cv2.COLOR_BGR2GRAY, difference)
-    _, threshold = cv2.threshold(gray, 30, 255, cv2.THRESH_BINARY)
-    contours, _ = cv2.findContours(threshold, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+    _, threshold = cv2.threshold(gray, 25, 255, cv2.THRESH_BINARY)
+    contours, _ = cv2.findContours(threshold, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
     mask = np.zeros_like(gray)
-    cv2.drawContours(mask, contours, -1, 255, -1)
+    cv2.drawContours(mask, contours, -1, 255, thickness=cv2.FILLED)
+
+    cv2.imshow("Mask", mask)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
 
 
 
 
-test()
+algorithm()
