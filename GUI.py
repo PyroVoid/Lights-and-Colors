@@ -5,7 +5,6 @@ from ttkbootstrap.constants import *
 from PIL import Image, ImageTk
 import cv2
 
-
 class App(tb.Window):
     def __init__(self):
         super().__init__(themename="journal")
