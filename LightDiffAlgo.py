@@ -17,7 +17,7 @@ def webcamPhoto(cap: cv2.VideoCapture)-> ndarray[tuple[Any, ...], dtype[Any]] | 
         return None
 
 
-def test(cap):
+def take_photo(cap):
     # Check if the camera opened
     if not cap.isOpened():
         print("Camera failed to open.")

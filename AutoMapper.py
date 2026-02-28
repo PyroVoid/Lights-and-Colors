@@ -1,18 +1,21 @@
 from TreeSimulation import Tree
 import Controller
-from LightDiffAlgoTmp import get_diffs, take_pic
+from LightDiffAlgo import algorithm, take_photo
+import cv2
 
 def map():
+    cap = cv2.VideoCapture(3, cv2.CAP_DSHOW)
     coords = []
     controller = Controller.Controller()
     for i in range(Tree.LIGHTS):
         controller.set_color(i, (0, 0, 0))
     for i in range(Tree.LIGHTS):
-        take_pic()
+        frame1 = take_photo(cap)
         controller.set_color(i, (255, 255, 255))
-        take_pic()
-        coords.append(get_diffs())
+        frame2 = take_photo(cap)
+        coords.append(algorithm(frame1, frame2))
         controller.set_color(i, (0, 0, 0))
+    cap.release()
     return coords
 
 if __name__ == "__main__":
