@@ -4,9 +4,6 @@ import cv2
 import numpy as np
 from numpy import dtype, ndarray
 
-
-
-
 def webcamPhoto(cap: cv2.VideoCapture)-> ndarray[tuple[Any, ...], dtype[Any]] | None | Any:
     worked, photo_array = cap.read()
     cv2.imshow("Photo", photo_array)
