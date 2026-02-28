@@ -35,11 +35,8 @@ def test(cap):
             return photo
 
 
-def algorithm():
+def algorithm(frame1, frame2):
     cap = cv2.VideoCapture(1)
-    frame1 = test(cap)
-    time.sleep(5)
-    frame2 = test(cap)
     difference = cv2.absdiff(frame1, frame2)
     gray = cv2.cvtColor(difference, cv2.COLOR_BGR2GRAY, difference)
     _, threshold = cv2.threshold(gray, 25, 255, cv2.THRESH_BINARY)
