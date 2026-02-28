@@ -49,7 +49,7 @@ def algorithm(frame1, frame2):
     for contour in contours:
         area = cv2.contourArea(contour)
         perimeter = cv2.arcLength(contour, True)
-        if area < 50:
+        if area < 2:
             continue
         if perimeter == 0:
             continue
