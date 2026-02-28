@@ -25,6 +25,7 @@ def take_photo(cap: cv2.VideoCapture) -> Any:
     else:
         # Read one frame
         ret, frame = cap.read()
+        time.sleep(0.1)
 
         if not ret:
             print("Failed to capture frame.")
