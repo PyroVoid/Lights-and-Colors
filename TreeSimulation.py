@@ -69,8 +69,7 @@ def tcp_listener(tree, host="127.0.0.1", port=5000):
                 pass
         conn.close()
 
-
-if __name__ == "__main__":
+def main():
     pygame.init()
     screen = pygame.display.set_mode((Tree.SCREEN_WIDTH, Tree.SCREEN_HEIGHT))
     tree = Tree()
@@ -87,3 +86,6 @@ if __name__ == "__main__":
         tree.update(screen)
 
     pygame.quit()
+
+if __name__ == "__main__":
+    main()

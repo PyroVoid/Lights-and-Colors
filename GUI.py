@@ -1,9 +1,12 @@
+import time
 import tkinter as tk
 from tkinter import filedialog
 import ttkbootstrap as tb
 from ttkbootstrap.constants import *
 from PIL import Image, ImageTk
+from AutoMapper import map
 import cv2
+import TreeSimulation as TS
 
 class App(tb.Window):
     def __init__(self):
@@ -197,8 +200,10 @@ class App(tb.Window):
             self.status_bar.config(text="Error: Please select a camera first!", bootstyle=DANGER)
             return
         print(f"Starting process with Camera {self.selected_camera_index}")
-
-
+        TS.main()
+        time.sleep(3)
+        coordinates = map()
+        print(coordinates)
 
 if __name__ == "__main__":
     app = App()
