@@ -55,7 +55,3 @@ def algorithm(frame1, frame2):
     cv2.waitKey(0)
     cv2.destroyAllWindows()
     return coordinates
-
-
-
-algorithm()
