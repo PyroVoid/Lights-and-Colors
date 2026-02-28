@@ -50,8 +50,4 @@ def algorithm(frame1, frame2):
             cx = int(M["m10"] / M["m00"])
             cy = int(M["m01"] / M["m00"])
             coordinates.append((cx, cy))
-
-    cv2.imshow("Mask", mask)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
     return coordinates
