@@ -9,9 +9,10 @@ class Tree:
     IMAGE = pygame.image.load("tree.webp")
     SCREEN_WIDTH = 616
     SCREEN_HEIGHT = 924
-    TREE_TL = (200, 250)
-    TREE_BR = (400, 770)
-    LIGHTS = 50
+    TREE_TL = (160, 300)
+    TREE_BR = (470, 770)
+    LIGHTS = 100
+    LIGHT_RADIUS = 5
 
     def __init__(self):
         self.light_colors = []
@@ -47,7 +48,7 @@ class Tree:
         screen.blit(Tree.IMAGE, (0, 0))
 
         for i in range(Tree.LIGHTS):
-            pygame.draw.circle(screen, self.light_colors[i], self.light_coords[i], 10)
+            pygame.draw.circle(screen, self.light_colors[i], self.light_coords[i], Tree.LIGHT_RADIUS)
 
         pygame.display.flip()
 
