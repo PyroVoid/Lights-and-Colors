@@ -26,8 +26,9 @@ class Automapper:
         coords = []
         for i in range(Tree.LIGHTS):
             coords.append(self.find_led(i))
+        frame = take_photo(self.cap)
         self.cap.release()
-        return coords
+        return coords, cap
 
 if __name__ == "__main__":
     mapper = Automapper(1)

@@ -45,24 +45,16 @@ class App(tb.Window):
             self.photo = ImageTk.PhotoImage(img)
             self.logo_label.config(image=self.photo)
         except Exception:
-            self.logo_label.config(text="Lights and Colors Demo", font=("Helvetica", 18), bootstyle=INFO)
+            self.logo_label.config(text="Auto Lights", font=("Helvetica", 18), bootstyle=INFO)
 
     def create_widgets(self):
         self.webcam_btn = tb.Button(
             self.button_frame,
-            text="📷 Select/Open Webcam",
+            text="Select/Open Webcam",
             bootstyle=INFO,
             command=self.webcam
         )
-        self.webcam_btn.pack(fill=X, pady=10)
-
-        self.files_btn = tb.Button(
-            self.button_frame,
-            text="📁 Select Files",
-            bootstyle=SECONDARY,
-            command=self.select_files
-        )
-        self.files_btn.pack(fill=X, pady=10)
+        self.webcam_btn.pack(fill=X, pady=30)
 
         self.calibrate_btn = tb.Button(
             self.button_frame,
@@ -70,7 +62,15 @@ class App(tb.Window):
             bootstyle=DANGER,
             command=self.calibrate_process
         )
-        self.calibrate_btn.pack(fill=X, pady=10)
+        self.calibrate_btn.pack(fill=X, pady=30)
+
+        self.files_btn = tb.Button(
+            self.button_frame,
+            text="📁 Select Files",
+            bootstyle=SECONDARY,
+            command=self.select_files
+        )
+        self.files_btn.pack(fill=X, pady=30)
 
         self.change_lights_btn = tb.Button(
             self.button_frame,
