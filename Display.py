@@ -1,5 +1,6 @@
 from tkinter import filedialog
 from AutoMapper import Automapper
+from TreeSimulation import Tree
 
 import cv2
 import numpy as np
@@ -15,7 +16,8 @@ def Display(original_picture, mapp, pic_to_show):
     image = cv2.imread(pTS)
     if image is None:
         raise Exception("No picture found")
-    op_height, op_width = og_pic.shape[:2]
+    # op_height, op_width = og_pic.shape[:2]
+    op_height, op_width = Tree.SCREEN_HEIGHT, Tree.SCREEN_WIDTH
     resized_PTS = cv2.resize(image, (op_width, op_height), interpolation = cv2.INTER_AREA)
     print(mapp)
     for i in range(len(mapp)):
@@ -29,6 +31,8 @@ def Display(original_picture, mapp, pic_to_show):
 if __name__ == "__main__":
     file = filedialog.askopenfilename()
     mapper = Automapper(1)
-    coords, frame =  mapper.map()
+    _, frame =  mapper.map()
+    tree = Tree()
+    coords = tree.get_coords()
     print(coords)
     Display(frame, coords, file)

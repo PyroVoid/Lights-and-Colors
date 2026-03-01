@@ -38,11 +38,11 @@ if __name__ == "__main__":
     print(coords)
     print(len(coords))
     pygame.init()
+    screen = pygame.display.set_mode((width, height))
     running = True
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            screen = pygame.display.set_mode((width, height))
-            for i in range(len(coords)):
-                pygame.draw.circle(screen, (255,255,255), coords[i], 5)
+        for i in range(len(coords)):
+            pygame.draw.circle(screen, (255,255,255), coords[i], 5)
