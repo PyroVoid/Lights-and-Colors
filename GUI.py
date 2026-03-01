@@ -5,7 +5,7 @@ import ttkbootstrap as tb
 from ttkbootstrap.constants import *
 from PIL import Image, ImageTk
 import cv2
-import Display
+from Display import Display
 import TreeSimulation as TS
 from AutoMapper import Automapper
 import platform
@@ -25,6 +25,10 @@ class App(tb.Window):
 
         self.button_frame = tb.Frame(self)
         self.button_frame.pack(expand=True, fill=BOTH, padx=50)
+
+        # Image display area (under buttons)
+        self.image_label = tb.Label(self)
+        self.image_label.pack(pady=20)
 
         # Status Label at the very bottom
         self.status_bar = tb.Label(
@@ -126,8 +130,29 @@ class App(tb.Window):
         self.cam_win.destroy()
 
     def select_files(self):
-        files = filedialog.askopenfilenames()
-        print(f"Selected: {files}")
+        file = filedialog.askopenfilename(
+            filetypes=[("Image Files", "*.png *.jpg *.jpeg *.bmp *.gif")]
+        )
+
+        if not file:
+            return
+
+        try:
+            self.img = Image.open(file)
+
+            # Resize image to fit window nicely
+            self.img.thumbnail((400, 300))
+
+            self.selected_image = ImageTk.PhotoImage(self.img)
+
+            # Display image
+            self.image_label.config(image=self.selected_image)
+
+            # Optional: update status bar
+            self.status_bar.config(text="Image loaded successfully", bootstyle=SUCCESS)
+
+        except Exception as e:
+            self.status_bar.config(text="Error loading image", bootstyle=DANGER)
 
     def calibrate_process(self):
         if self.selected_camera_index is None:
@@ -141,10 +166,10 @@ class App(tb.Window):
         TS.main()
         time.sleep(3)
         mapper = Automapper(self.selected_camera_index)
-        coordinates = mapper.map()
+        self.coordinates, self.cam_frame = mapper.map()
 
     def change_lights(self):
-        pass
+        Display(self.cam_frame, self.coordinates, self.cam_frame)
 
 
 if __name__ == "__main__":
