@@ -76,9 +76,9 @@ class App(tb.Window):
         available = []
         for i in range(5):
             if platform.system() == "Windows":
-                cap = cv2.VideoCapture(cap, cv2.CAP_DSHOW)
+                cap = cv2.VideoCapture(i, cv2.CAP_DSHOW)
             else:
-                cap = cv2.VideoCapture(cap)
+                cap = cv2.VideoCapture(i)
             if cap.isOpened():
                 available.append(f"Camera {i}")
                 cap.release()
