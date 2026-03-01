@@ -15,13 +15,12 @@ class Automapper:
 
     def find_led(self, i):
         leds = set()
-        while len(leds) != 1:
-            self.controller.set_all((0, 0, 0))
-            first = take_photo(self.cap)
-            self.controller.set_color(i, (255, 255, 255))
-            second = take_photo(self.cap)
-            leds = algorithm(first, second)
-        return leds[0]
+        self.controller.set_all((0, 0, 0))
+        first = take_photo(self.cap)
+        self.controller.set_color(i, (255, 255, 255))
+        second = take_photo(self.cap)
+        leds = algorithm(first, second)
+        return 'foo'
 
     def map(self):
         coords = []
