@@ -38,6 +38,7 @@ if __name__ == "__main__":
     print(coords)
     print(len(coords))
     pygame.init()
+    screen = pygame.display.set_mode((width, height))
     running = True
     screen = pygame.display.set_mode((width, height))
     while running:

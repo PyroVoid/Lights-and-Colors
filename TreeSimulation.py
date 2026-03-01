@@ -19,6 +19,8 @@ class Tree:
         self.light_coords = []
         self.command_queue = queue.Queue()
 
+        random.seed(42)
+
         for _ in range(Tree.LIGHTS):
             x = random.randint(Tree.TREE_TL[0], Tree.TREE_BR[0])
             y = random.randint(Tree.TREE_TL[1], Tree.TREE_BR[1])
@@ -51,6 +53,9 @@ class Tree:
             pygame.draw.circle(screen, self.light_colors[i], self.light_coords[i], Tree.LIGHT_RADIUS)
 
         pygame.display.flip()
+
+    def get_coords(self):
+        return self.light_coords
 
 
 def tcp_listener(tree, host="127.0.0.1", port=5000):
