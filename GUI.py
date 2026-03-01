@@ -64,13 +64,21 @@ class App(tb.Window):
         )
         self.files_btn.pack(fill=X, pady=10)
 
-        self.start_btn = tb.Button(
+        self.calibrate_btn = tb.Button(
             self.button_frame,
-            text="▶ Start Process",
-            bootstyle=SUCCESS,
-            command=self.start_process
+            text="Calibrate Lights",
+            bootstyle=DANGER,
+            command=self.calibrate_process
         )
-        self.start_btn.pack(fill=X, pady=30)
+        self.calibrate_btn.pack(fill=X, pady=10)
+
+        self.change_lights_btn = tb.Button(
+            self.button_frame,
+            text="Change Lights",
+            bootstyle=SUCCESS,
+            command=self.change_lights
+        )
+        self.change_lights_btn.pack(fill=X, pady=30)
 
     def scan_for_cameras(self):
         available = []
@@ -121,17 +129,23 @@ class App(tb.Window):
         files = filedialog.askopenfilenames()
         print(f"Selected: {files}")
 
-    def start_process(self):
+    def calibrate_process(self):
         if self.selected_camera_index is None:
-            # Change status bar to alert user if they forgot
             self.status_bar.config(text="Error: Please select a camera first!", bootstyle=DANGER)
             return
-        print(f"Starting process with Camera {self.selected_camera_index}")
+        if self.selected_camera_index == 0:
+            self.status_bar.config(text="Error: Please select a image first!", bootstyle=SUCCESS)
+            return
+
+        print(f"Calibrating with Camera {self.selected_camera_index}")
         TS.main()
         time.sleep(3)
         mapper = Automapper(self.selected_camera_index)
         coordinates = mapper.map()
-        print(coordinates)
+
+    def change_lights(self):
+        pass
+
 
 if __name__ == "__main__":
     app = App()
