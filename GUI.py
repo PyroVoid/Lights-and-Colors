@@ -6,6 +6,7 @@ from ttkbootstrap.constants import *
 from PIL import Image, ImageTk
 from AutoMapper import map
 import cv2
+import Display
 import TreeSimulation as TS
 
 class App(tb.Window):
