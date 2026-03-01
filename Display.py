@@ -20,8 +20,9 @@ def Display(original_picture, mapp, pic_to_show):
     print(mapp)
     for i in range(len(mapp)):
         coords = mapp[i]
-        resized_PTS = cv2.cvtColor(resized_PTS, cv2.COLOR_BGR2RGB)
-        r, g, b = resized_PTS[coords[0], coords[1]]
+        cv2.waitKey(0)
+        cv2.destroyAllWindows()
+        b, g, r = resized_PTS[coords[0], coords[1]]
         rgb = (int(r), int(g), int(b))
         controller.set_color(i, rgb)
 
