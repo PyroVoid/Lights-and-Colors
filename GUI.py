@@ -8,6 +8,7 @@ from AutoMapper import map
 import cv2
 import Display
 import TreeSimulation as TS
+from AutoMapper import Automapper
 
 class App(tb.Window):
     def __init__(self):
@@ -125,7 +126,8 @@ class App(tb.Window):
         print(f"Starting process with Camera {self.selected_camera_index}")
         TS.main()
         time.sleep(3)
-        coordinates = map()
+        mapper = Automapper(self.selected_camera_index)
+        coordinates = mapper.map()
         print(coordinates)
 
 if __name__ == "__main__":
