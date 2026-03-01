@@ -1,5 +1,6 @@
 import socket
 import json
+from TreeSimulation import Tree
 
 class Controller:
     def __init__(self, host="127.0.0.1", port=5000):
@@ -22,6 +23,10 @@ class Controller:
             "color": list(color)
         }
         self._send_command(command)
+
+    def set_all(self, color):
+        for i in range(Tree.LIGHTS):
+            self.set_color(i, color)
 
 if __name__ == "__main__":
     controller = Controller()

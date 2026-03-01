@@ -11,7 +11,7 @@ class Tree:
     SCREEN_HEIGHT = 924
     TREE_TL = (160, 300)
     TREE_BR = (470, 770)
-    LIGHTS = 15
+    LIGHTS = 50
     LIGHT_RADIUS = 5
 
     def __init__(self):

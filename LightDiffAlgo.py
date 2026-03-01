@@ -3,6 +3,9 @@ import time
 import cv2
 import numpy as np
 from numpy import dtype, ndarray
+from Coord import Coord
+
+
 
 def webcamPhoto(cap: cv2.VideoCapture)-> ndarray[tuple[Any, ...], dtype[Any]] | None | Any:
     worked, photo_array = cap.read()
@@ -21,8 +24,8 @@ def take_photo(cap: cv2.VideoCapture) -> Any:
         return None
     else:
         # Read one frame
-        ret, frame = cap.read()
         time.sleep(0.1)
+        ret, frame = cap.read()
 
         if not ret:
             print("Failed to capture frame.")
