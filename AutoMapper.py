@@ -10,22 +10,21 @@ else:
     cap = cv2.VideoCapture(1)
 controller = Controller.Controller()
 
-def find_leds():
-    leds = set()
-    first = take_photo(cap)
-    controller.set_all((0, 0, 0))
-    second = take_photo(cap)
 
+def find_led(i):
+    leds = set()
+    while len(leds) != 1:
+        controller.set_all((0, 0, 0))
+        first = take_photo(cap)
+        controller.set_color(i, (255, 255, 255))
+        second = take_photo(cap)
+        leds = algorithm(first, second)
+    return leds[0]
 
 def map():
     coords = []
-    controller.set_all((0, 0, 0))
-    frame1 = take_photo(cap)
     for i in range(Tree.LIGHTS):
-        controller.set_color(i, (255, 255, 255))
-        frame2 = take_photo(cap)
-        coords += algorithm(frame1, frame2)
-        controller.set_color(i, (0, 0, 0))
+        coords.append(find_led(i))
     cap.release()
     return coords
 

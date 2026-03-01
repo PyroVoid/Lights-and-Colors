@@ -24,8 +24,8 @@ def take_photo(cap: cv2.VideoCapture) -> Any:
         return None
     else:
         # Read one frame
-        ret, frame = cap.read()
         time.sleep(0.1)
+        ret, frame = cap.read()
 
         if not ret:
             print("Failed to capture frame.")
@@ -61,10 +61,5 @@ def algorithm(frame1, frame2):
                 cx = int(M["m10"] / M["m00"])
                 cy = int(M["m01"] / M["m00"])
                 coordinates.append((cx, cy))
-
-    converted_coordinates = []
-
-    for coord in coordinates:
-        converted_coordinates.append(Coord(coord[0], coord[1]))
 
     return coordinates
