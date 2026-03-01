@@ -44,7 +44,7 @@ class App(tb.Window):
             self.photo = ImageTk.PhotoImage(img)
             self.logo_label.config(image=self.photo)
         except Exception:
-            self.logo_label.config(text="[ LOGO PLACEHOLDER ]", font=("Helvetica", 18))
+            self.logo_label.config(text="Lights and Colors Demo", font=("Helvetica", 18), bootstyle=INFO)
 
     def create_widgets(self):
         self.webcam_btn = tb.Button(
