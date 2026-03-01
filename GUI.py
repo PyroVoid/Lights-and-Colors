@@ -16,7 +16,7 @@ class App(tb.Window):
         super().__init__(themename="journal")
 
         self.title("Project Workspace")
-        self.geometry("500x600")
+        self.geometry("500x800")
 
         self.selected_camera_index = None
 
@@ -164,8 +164,6 @@ class App(tb.Window):
             return
 
         print(f"Calibrating with Camera {self.selected_camera_index}")
-        TS.main()
-        time.sleep(3)
         mapper = Automapper(self.selected_camera_index)
         self.coordinates, self.cam_frame = mapper.map()
 

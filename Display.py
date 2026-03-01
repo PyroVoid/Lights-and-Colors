@@ -1,3 +1,4 @@
+from bdb import foo
 from tkinter import filedialog
 from AutoMapper import Automapper
 from TreeSimulation import Tree
@@ -24,15 +25,16 @@ def Display(original_picture, mapp, pic_to_show):
         coords = mapp[i]
         cv2.waitKey(0)
         cv2.destroyAllWindows()
-        b, g, r = resized_PTS[coords[0], coords[1]]
+        b, g, r = resized_PTS[coords[1], coords[0]]
         rgb = (int(r), int(g), int(b))
         controller.set_color(i, rgb)
 
 if __name__ == "__main__":
     file = filedialog.askopenfilename()
     mapper = Automapper(1)
-    _, frame =  mapper.map()
+   # _, frame =  mapper.map()
     tree = Tree()
     coords = tree.get_coords()
     print(coords)
+    frame = "foo"
     Display(frame, coords, file)
