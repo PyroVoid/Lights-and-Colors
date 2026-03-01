@@ -3,6 +3,7 @@ import Controller
 from LightDiffAlgo import algorithm, take_photo
 import cv2
 import platform
+import pygame
 
 class Automapper:
     def __init__(self, cap):
@@ -32,6 +33,16 @@ class Automapper:
 
 if __name__ == "__main__":
     mapper = Automapper(1)
-    coords = mapper.map()
+    coords, frame = mapper.map()
+    height, width = frame.shape[:-2]
     print(coords)
     print(len(coords))
+    pygame.init()
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+            screen = pygame.display.set_mode((width, height))
+            for i in range(len(coords)):
+                pygame.draw.circle(screen, (255,255,255), coords[i], 5)
