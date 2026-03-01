@@ -9,6 +9,7 @@ from Display import Display
 import TreeSimulation as TS
 from AutoMapper import Automapper
 import platform
+from TreeSimulation import Tree
 
 class App(tb.Window):
     def __init__(self):
@@ -130,15 +131,15 @@ class App(tb.Window):
         self.cam_win.destroy()
 
     def select_files(self):
-        file = filedialog.askopenfilename(
+        self.file = filedialog.askopenfilename(
             filetypes=[("Image Files", "*.png *.jpg *.jpeg *.bmp *.gif")]
         )
 
-        if not file:
+        if not self.file:
             return
 
         try:
-            self.img = Image.open(file)
+            self.img = Image.open(self.file)
 
             # Resize image to fit window nicely
             self.img.thumbnail((400, 300))
@@ -169,7 +170,10 @@ class App(tb.Window):
         self.coordinates, self.cam_frame = mapper.map()
 
     def change_lights(self):
-        Display(self.cam_frame, self.coordinates, self.cam_frame)
+        tree = Tree()
+        coords = tree.get_coords()
+        frame = "foo"
+        Display(frame, coords, self.file)
 
 
 if __name__ == "__main__":
