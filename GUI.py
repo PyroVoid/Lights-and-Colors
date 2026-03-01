@@ -8,6 +8,7 @@ import cv2
 import Display
 import TreeSimulation as TS
 from AutoMapper import Automapper
+import platform
 
 class App(tb.Window):
     def __init__(self):
@@ -74,7 +75,10 @@ class App(tb.Window):
     def scan_for_cameras(self):
         available = []
         for i in range(5):
-            cap = cv2.VideoCapture(i, cv2.CAP_DSHOW)
+            if platform.system() == "Windows":
+                cap = cv2.VideoCapture(cap, cv2.CAP_DSHOW)
+            else:
+                cap = cv2.VideoCapture(cap)
             if cap.isOpened():
                 available.append(f"Camera {i}")
                 cap.release()
