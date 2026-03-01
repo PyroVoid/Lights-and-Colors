@@ -164,8 +164,6 @@ class App(tb.Window):
             return
 
         print(f"Calibrating with Camera {self.selected_camera_index}")
-        TS.main()
-        time.sleep(3)
         mapper = Automapper(self.selected_camera_index)
         self.coordinates, self.cam_frame = mapper.map()
 
