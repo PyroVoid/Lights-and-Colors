@@ -34,15 +34,15 @@ class Automapper:
 if __name__ == "__main__":
     mapper = Automapper(1)
     coords, frame = mapper.map()
-    height, width = frame.shape[:-2]
+    height, width = frame.shape[:2]
     print(coords)
     print(len(coords))
     pygame.init()
     running = True
+    screen = pygame.display.set_mode((width, height))
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            screen = pygame.display.set_mode((width, height))
-            for i in range(len(coords)):
-                pygame.draw.circle(screen, (255,255,255), coords[i], 5)
+        for i in range(len(coords)):
+            pygame.draw.circle(screen, (255,255,255), coords[i], 5)
