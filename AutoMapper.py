@@ -28,7 +28,7 @@ class Automapper:
             coords.append(self.find_led(i))
         frame = take_photo(self.cap)
         self.cap.release()
-        return coords, cap
+        return coords, frame
 
 if __name__ == "__main__":
     mapper = Automapper(1)
