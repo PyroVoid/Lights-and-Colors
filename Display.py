@@ -2,7 +2,9 @@ import cv2
 import numpy as np
 
 import Controller
-
+from tkinter import filedialog
+from PIL import Image
+from AutoMapper import Automapper
 
 def Display(original_picture, mapp, pic_to_show):
     controller = Controller.Controller()
@@ -17,3 +19,12 @@ def Display(original_picture, mapp, pic_to_show):
         b, g, r = resized_PTS[coords[0], coords[1]]
         rgb = (r, g, b)
         controller.set_color(i, rgb)
+
+if __name__ == "__main__":
+    file = filedialog.askopenfilename(
+        filetypes=[("Image Files", "*.png *.jpg *.jpeg *.bmp *.gif")]
+    )
+    img = Image.open(file)
+    mapper = Automapper(1)
+    coords, frame = mapper.map()
+    Display(frame, coords, img)
